@@ -221,28 +221,82 @@ header h1 {
 /* Collapsible Sources */
 .sources-collapsible {
     margin-top: 0.5rem;
-    font-size: 0.75rem;
-    color: var(--text-secondary);
+    font-size: 0.8rem;
+    background: rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+    border-radius: 8px;
+    padding: 0.5rem;
 }
 
 .sources-collapsible summary {
     cursor: pointer;
     padding: 0.25rem 0.5rem;
     user-select: none;
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .sources-collapsible summary:hover {
-    color: var(--text-primary);
+    color: var(--primary-hover);
+}
+
+.sources-collapsible summary::marker {
+    display: none;
+}
+
+.sources-collapsible summary::before {
+    content: '▶';
+    font-size: 0.7rem;
+    transition: transform 0.2s ease;
+}
+
+.sources-collapsible[open] summary::before {
+    transform: rotate(90deg);
 }
 
 .sources-collapsible[open] summary {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(37, 99, 235, 0.2);
 }
 
 .sources-content {
-    padding: 0 0.5rem 0.25rem 1.5rem;
-    color: var(--text-secondary);
+    padding: 0.25rem 0.5rem;
+    line-height: 1.6;
+    color: #60a5fa !important;
+    font-weight: 500;
+}
+
+.sources-content a {
+    color: #60a5fa !important;
+    text-decoration: none;
+    padding: 0.2rem 0.4rem;
+    background: rgba(96, 165, 250, 0.1);
+    border-radius: 4px;
+    margin: 0.1rem;
+    display: inline-block;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.sources-content a:hover {
+    color: #93c5fd !important;
+    background: rgba(96, 165, 250, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(96, 165, 250, 0.3);
+}
+
+.sources-content a:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Ensure all text in sources is readable */
+.sources-collapsible * {
+    color: #60a5fa !important;
 }
 
 /* Markdown formatting styles */
@@ -599,6 +653,36 @@ details[open] .suggested-header::before {
     color: var(--text-secondary);
     font-style: italic;
     text-transform: none;
+}
+
+/* New Chat Button */
+.new-chat-button {
+    width: 100%;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem 0;
+    border: none;
+    background: none;
+    list-style: none;
+    outline: none;
+    transition: color 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+
+.new-chat-button:focus {
+    color: var(--primary-color);
+}
+
+.new-chat-button:hover {
+    color: var(--primary-color);
+}
+
+.new-chat-button:active {
+    color: var(--primary-color);
 }
 
 /* Suggested Questions in Sidebar */
