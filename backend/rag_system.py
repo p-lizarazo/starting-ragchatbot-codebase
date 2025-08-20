@@ -118,9 +118,13 @@ class RAGSystem:
         # Get conversation history if session exists
         history = None
         if session_id:
-            history = self.session_manager.get_conversation_history(session_id)
+            try:
+                history = self.session_manager.get_conversation_history(session_id)
+            except Exception as e:
+                print(f"Warning: Could not retrieve conversation history: {e}")
+                history = None
         
-        # Generate response using AI with tools
+        # Generate response using AI with tools (let exceptions propagate)
         response = self.ai_generator.generate_response(
             query=prompt,
             conversation_history=history,
@@ -136,7 +140,10 @@ class RAGSystem:
         
         # Update conversation history
         if session_id:
-            self.session_manager.add_exchange(session_id, query, response)
+            try:
+                self.session_manager.add_exchange(session_id, query, response)
+            except Exception as e:
+                print(f"Warning: Could not update conversation history: {e}")
         
         # Return response with sources from tool searches
         return response, sources
