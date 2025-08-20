@@ -18,8 +18,27 @@ cd backend && uv run uvicorn app:app --reload --port 8000
 # Install dependencies
 uv sync
 
+# Install development dependencies (includes code quality tools)
+uv sync --group dev
+
 # Environment variables required in .env:
 ANTHROPIC_API_KEY=your_anthropic_api_key_here
+```
+
+### Code Quality Tools
+
+```bash
+# Format code automatically
+uv run python scripts/format_code.py
+
+# Run all quality checks
+uv run python scripts/quality_check.py
+
+# Individual quality commands
+uv run black backend/ main.py              # Format code
+uv run isort backend/ main.py              # Sort imports
+uv run flake8 backend/ main.py             # Lint code
+uv run mypy backend/ main.py               # Type check
 ```
 
 ### Access Points
